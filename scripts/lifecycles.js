@@ -4,26 +4,24 @@ var lifecycles_begin = function()
 
 	// Generate species
 
+	var kingdoms = [];
+
+	// Mass in kg, lifespan in years
+	kingdoms.push(new Kingdom("animal",   {biomass: [0.1,    5000    ], lifespan: [0.01,  150   ]}));
+	kingdoms.push(new Kingdom("plant",    {biomass: [0.1,   10000    ], lifespan: [1,    1000   ]}));
+	kingdoms.push(new Kingdom("bacteria", {biomass: [0.001,     0.002], lifespan: [0.001,   0.01]}));
+
+
 	var species = [];
-	species.push(new Species);
-	species.push(new Species);
-	species.push(new Species);
-	species.push(new Species);
+
+	species.push(new Species(kingdoms));
+	species.push(new Species(kingdoms));
+	species.push(new Species(kingdoms));
+	species.push(new Species(kingdoms));
 
 
-	// Spawn populations
+	// Spawn populations to cover the planet
 	//
-	var population_remaining = 1.0;
 
-	for(thing in species)
-	{
-		var desired_population = Math.random() * population_remaining;
-		species[thing].population_percentage = desired_population;
-
-		console.log(species[thing]);
-	}
-
-	// Show lifespan
-
-	// Calculate birth rate. (x per y)
+	// Show population event (death/birth)
 };

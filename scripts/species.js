@@ -1,14 +1,9 @@
-var Species = function()
+var Species = function(kingdoms)
 {
-	var kingdom   = ["animal", "plant", "bacteria"];
 
-	this.kindgom  = kingdom[Math.floor(Math.random() * kingdom.length)];
-	this.biomass  = Math.random() * 100;
-	this.lifespan = Math.random() * 1000;
+	this.kingdom  = kingdoms[Math.floor(Math.random() * kingdoms.length)];
+	this.biomass  = Math.random() * (this.kingdom.biomass[1]  - this.kingdom.biomass[0])  + this.kingdom.biomass[0];
+	this.lifespan = Math.random() * (this.kingdom.lifespan[1] - this.kingdom.lifespan[0]) + this.kingdom.lifespan[0];
 
 	// life cycles (duration of life)
-
-	this.population_percentage = 0;
 };
-
-// Ranges for each
