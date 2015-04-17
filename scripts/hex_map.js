@@ -2,7 +2,7 @@ var render_map = function()
 {
 	var width  = 960,
 		height = 500,
-		radius = 20;
+		radius = 50;
 
 	var topology = hexTopology(radius, width, height);
 
@@ -21,10 +21,10 @@ var render_map = function()
 		.data(topology.objects.hexagons.geometries)
 	  .enter().append("path")
 		.attr("d", function(d) { return path(topojson.feature(topology, d)); })
-		.attr("class", function(d) { return d.fill ? "fill" : null; })
-		.on("mousedown", mousedown)
-		.on("mousemove", mousemove)
-		.on("mouseup", mouseup);
+		.attr("class", function(d) { return d.land ? "land" : "water"; })
+		//.on("mousedown", mousedown)
+		//.on("mousemove", mousemove)
+		//.on("mouseup", mouseup);
 
 	svg.append("path")
 		.datum(topojson.mesh(topology, topology.objects.hexagons))
@@ -55,7 +55,7 @@ var render_map = function()
 	}
 
 	function redraw(border) {
-	  border.attr("d", path(topojson.mesh(topology, topology.objects.hexagons, function(a, b) { return a.fill ^ b.fill; })));
+	  border.attr("d", path(topojson.mesh(topology, topology.objects.hexagons, function(a, b) { return a.land ^ b.land; })));
 	}
 
 	function hexTopology(radius, width, height) {
@@ -78,7 +78,7 @@ var render_map = function()
 		  geometries.push({
 			type: "Polygon",
 			arcs: [[q, q + 1, q + 2, ~(q + (n + 2 - (j & 1)) * 3), ~(q - 2), ~(q - (n + 2 + (j & 1)) * 3 + 2)]],
-			fill: Math.random() > i / n * 2
+			land: Math.random() > i / n * 2
 		  });
 		}
 	  }

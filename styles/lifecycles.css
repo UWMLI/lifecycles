@@ -1,3 +1,6 @@
+svg {
+	border: 1px solid rgba(0,0,0, 0.2);
+}
 .hexagon {
   fill: white;
   pointer-events: all;
@@ -9,11 +12,15 @@
 }
 
 .hexagon :hover {
-  fill: pink;
+  opacity: 0.5;
 }
 
-.hexagon .fill {
-  fill: red;
+.hexagon .land {
+  fill: #27ae60;
+}
+
+.hexagon .water {
+  fill: #2980b9;
 }
 
 .mesh {
@@ -25,7 +32,7 @@
 
 .border {
   fill: none;
-  stroke: #000;
+  stroke: #2ecc71;
   stroke-width: 2px;
   pointer-events: none;
 }
