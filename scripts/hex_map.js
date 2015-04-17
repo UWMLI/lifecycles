@@ -21,7 +21,7 @@ var render_map = function()
 		.data(topology.objects.hexagons.geometries)
 	  .enter().append("path")
 		.attr("d", function(d) { return path(topojson.feature(topology, d)); })
-		.attr("class", function(d) { return d.land ? "land" : "water"; })
+		.attr("class", land_and_species)
 		.on("mousedown", mousedown)
 		//.on("mousemove", mousemove)
 		//.on("mouseup", mouseup);
@@ -36,6 +36,18 @@ var render_map = function()
 		.call(redraw);
 
 	var mousing = 0;
+
+	function land_and_species(d) {
+		var classes = "";
+
+		classes += d.land ? "land" : "water";
+
+		classes += " "
+
+		classes += d.species.length > 0 ? "species" : "";
+
+		return classes;
+	}
 
 	function mousedown(d) {
 		console.log(d.species);

@@ -19,7 +19,10 @@ var lifecycles_begin = function()
 	game.species.push(new Species(game.kingdoms));
 	game.species.push(new Species(game.kingdoms));
 	game.species.push(new Species(game.kingdoms));
-
+	game.species.push(new Species(game.kingdoms));
+	game.species.push(new Species(game.kingdoms));
+	game.species.push(new Species(game.kingdoms));
+	game.species.push(new Species(game.kingdoms));
 
 
 	// Spawn populations to cover the planet
@@ -29,13 +32,23 @@ var lifecycles_begin = function()
 	for(var thing in game.species)
 	{
 		var population = new Population(game.species[thing]);
-		population.location = {i: 6, n: 7};
+		population.location = {x: Math.floor(Math.random() * game.width), y: Math.floor(Math.random() * game.height)};
 		game.populations.push(population);
 	}
 
 	game.species_at = function(x,y)
 	{
-		return [];
+		var results = [];
+
+		for(var population in game.populations)
+		{
+			var pop = game.populations[population];
+			if(pop.location.x === x && pop.location.y === y)
+			{
+				results.push(pop);
+			}
+		}
+		return results;
 	};
 
 	// Show population event (death/birth)

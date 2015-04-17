@@ -23,6 +23,14 @@ svg {
   fill: #2980b9;
 }
 
+.hexagon .water.species {
+  fill: #8e44ad !important;
+}
+
+.hexagon .land.species {
+  fill: #f39c12 !important;
+}
+
 .mesh {
   fill: none;
   stroke: #000;
