@@ -31,6 +31,12 @@ var lifecycles_begin = function()
 	game.species.push(new Species(game.kingdoms));
 	game.species.push(new Species(game.kingdoms));
 	game.species.push(new Species(game.kingdoms));
+	game.species.push(new Species(game.kingdoms));
+	game.species.push(new Species(game.kingdoms));
+	game.species.push(new Species(game.kingdoms));
+	game.species.push(new Species(game.kingdoms));
+	game.species.push(new Species(game.kingdoms));
+	game.species.push(new Species(game.kingdoms));
 
 
 	game.population_at = function(x,y)

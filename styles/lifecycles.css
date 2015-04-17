@@ -15,19 +15,19 @@ svg {
   opacity: 0.5;
 }
 
-.hexagon .land {
+.hexagon .Land {
   fill: #27ae60;
 }
 
-.hexagon .water {
+.hexagon .Water {
   fill: #2980b9;
 }
 
-.hexagon .water.population {
+.hexagon .Water.population {
   fill: #8e44ad !important;
 }
 
-.hexagon .land.population {
+.hexagon .Land.population {
   fill: #e67e22 !important;
 }
 

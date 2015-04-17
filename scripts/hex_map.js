@@ -11,9 +11,12 @@ var render_map = function()
 	var path = d3.geo.path()
 		.projection(projection);
 
+
 	var svg = d3.select("body").append("svg")
 		.attr("width", width)
 		.attr("height", height);
+
+	var info_box = d3.select("body").append("div").attr("id", "population_info");
 
 	svg.append("g")
 		.attr("class", "hexagon")
@@ -41,7 +44,7 @@ var render_map = function()
 	function land_and_population(d) {
 		var classes = "";
 
-		classes += d.land ? "land" : "water";
+		classes += d.land;
 
 		classes += " "
 
@@ -52,13 +55,24 @@ var render_map = function()
 
 	function population_heartbeat(d) {
 		//d.population.lifespan
-		return "-webkit-animation-duration: 1s !important;"
+		if(d.population)
+		{
+			//var speed = d.population.count/d.population.species.lifespan;
+			var speed = d.population.species.lifespan * 1;
+			return "-webkit-animation-duration: "+speed+"s !important;"
+		}
 	}
 
 	function mousedown(d) {
-		console.log(d.population);
-	  //mousing = d.fill ? -1 : +1;
-	  //mousemove.apply(this, arguments);
+		if(d.population)
+		{
+			$('#population_info').text("On "+d.land + ", Population Ever: " + d.population.count_ever + " Lifespan: "+d.population.species.lifespan);
+		}
+		else
+		{
+
+			$('#population_info').text("");
+		}
 	}
 
 	function mousemove(d) {
@@ -98,7 +112,7 @@ var render_map = function()
 		  geometries.push({
 			type: "Polygon",
 			arcs: [[q, q + 1, q + 2, ~(q + (n + 2 - (j & 1)) * 3), ~(q - 2), ~(q - (n + 2 + (j & 1)) * 3 + 2)]],
-			land: Math.random() > i / n * 2,
+			land: Math.random() > i / n * 2 ? "Land" : "Water",
 			population: game.population_at(i, j)
 		  });
 		}
