@@ -1,8 +1,8 @@
 var render_map = function()
 {
-	var width  = 960,
-		height = 500,
-		radius = 50;
+	var radius = 50;
+	var height = game.height * radius * 1.5;
+	var width  = game.width  * radius * 1.5;
 
 	var topology = hexTopology(radius, width, height);
 
@@ -22,7 +22,7 @@ var render_map = function()
 	  .enter().append("path")
 		.attr("d", function(d) { return path(topojson.feature(topology, d)); })
 		.attr("class", function(d) { return d.land ? "land" : "water"; })
-		//.on("mousedown", mousedown)
+		.on("mousedown", mousedown)
 		//.on("mousemove", mousemove)
 		//.on("mouseup", mouseup);
 
@@ -38,8 +38,9 @@ var render_map = function()
 	var mousing = 0;
 
 	function mousedown(d) {
-	  mousing = d.fill ? -1 : +1;
-	  mousemove.apply(this, arguments);
+		console.log(d.species);
+	  //mousing = d.fill ? -1 : +1;
+	  //mousemove.apply(this, arguments);
 	}
 
 	function mousemove(d) {
@@ -73,12 +74,14 @@ var render_map = function()
 		}
 	  }
 
+	  // i = x, j = y
 	  for (var j = 0, q = 3; j < m; ++j, q += 6) {
 		for (var i = 0; i < n; ++i, q += 3) {
 		  geometries.push({
 			type: "Polygon",
 			arcs: [[q, q + 1, q + 2, ~(q + (n + 2 - (j & 1)) * 3), ~(q - 2), ~(q - (n + 2 + (j & 1)) * 3 + 2)]],
-			land: Math.random() > i / n * 2
+			land: Math.random() > i / n * 2,
+			species: game.species_at(i, j)
 		  });
 		}
 	  }
@@ -96,11 +99,11 @@ var render_map = function()
 	  return {
 		stream: function(stream) {
 		  return {
-			point: function(x, y) { stream.point(x * dx / 2, (y - (2 - (y & 1)) / 3) * dy / 2); },
-			lineStart: function() { stream.lineStart(); },
-			lineEnd: function() { stream.lineEnd(); },
+			point:        function(x, y) { stream.point(x * dx / 2, (y - (2 - (y & 1)) / 3) * dy / 2); },
+			lineStart:    function() { stream.lineStart(); },
+			lineEnd:      function() { stream.lineEnd(); },
 			polygonStart: function() { stream.polygonStart(); },
-			polygonEnd: function() { stream.polygonEnd(); }
+			polygonEnd:   function() { stream.polygonEnd(); }
 		  };
 		}
 	  };
