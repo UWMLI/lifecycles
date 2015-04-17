@@ -88,7 +88,7 @@ var render_map = function()
 	}
 
 	function redraw(border) {
-	  border.attr("d", path(topojson.mesh(topology, topology.objects.hexagons, function(a, b) { return a.land ^ b.land; })));
+	  border.attr("d", path(topojson.mesh(topology, topology.objects.hexagons, function(a, b) { return a.land !== b.land; })));
 	}
 
 	function hexTopology(radius, width, height) {
