@@ -16,5 +16,10 @@ Population.prototype.birth_rate = function()
 Population.prototype.birth_tick = function()
 {
 	this.count_ever += this.birth_rate();
+
+	if(this.birth_callback)
+	{
+		this.birth_callback.call(this, this, this.species);
+	}
 	this.birth_event = setTimeout(this.birth_tick.bind(this), this.birth_period);
 }
