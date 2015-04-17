@@ -20,8 +20,14 @@ var lifecycles_begin = function()
 	species.push(new Species(kingdoms));
 
 
+	// Show population event (death/birth)
+
 	// Spawn populations to cover the planet
 	//
+	var populations = [];
 
-	// Show population event (death/birth)
+	for(var thing in species)
+	{
+		populations.push(new Population(species[thing]));
+	}
 };
