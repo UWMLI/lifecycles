@@ -33,7 +33,7 @@ var lifecycles_begin = function()
 	game.species.push(new Species(game.kingdoms));
 
 
-	game.species_at = function(x,y)
+	game.population_at = function(x,y)
 	{
 		for(var population in game.populations)
 		{
@@ -59,7 +59,7 @@ var lifecycles_begin = function()
 		{
 			location = {x: Math.floor(Math.random() * game.width), y: Math.floor(Math.random() * game.height)};
 		}
-		while(game.species_at(location.x, location.y));
+		while(game.population_at(location.x, location.y));
 
 		population.location = location;
 		game.populations.push(population);

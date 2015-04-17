@@ -21,7 +21,8 @@ var render_map = function()
 		.data(topology.objects.hexagons.geometries)
 	  .enter().append("path")
 		.attr("d", function(d) { return path(topojson.feature(topology, d)); })
-		.attr("class", land_and_species)
+		.attr("class", land_and_population)
+		.attr("style", population_heartbeat)
 		.on("mousedown", mousedown)
 		//.on("mousemove", mousemove)
 		//.on("mouseup", mouseup);
@@ -37,20 +38,25 @@ var render_map = function()
 
 	var mousing = 0;
 
-	function land_and_species(d) {
+	function land_and_population(d) {
 		var classes = "";
 
 		classes += d.land ? "land" : "water";
 
 		classes += " "
 
-		classes += d.species ? "species" : "";
+		classes += d.population ? "population" : "";
 
 		return classes;
 	}
 
+	function population_heartbeat(d) {
+		//d.population.lifespan
+		return "-webkit-animation-duration: 1s !important;"
+	}
+
 	function mousedown(d) {
-		console.log(d.species);
+		console.log(d.population);
 	  //mousing = d.fill ? -1 : +1;
 	  //mousemove.apply(this, arguments);
 	}
@@ -93,7 +99,7 @@ var render_map = function()
 			type: "Polygon",
 			arcs: [[q, q + 1, q + 2, ~(q + (n + 2 - (j & 1)) * 3), ~(q - 2), ~(q - (n + 2 + (j & 1)) * 3 + 2)]],
 			land: Math.random() > i / n * 2,
-			species: game.species_at(i, j)
+			population: game.population_at(i, j)
 		  });
 		}
 	  }

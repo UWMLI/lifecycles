@@ -23,12 +23,12 @@ svg {
   fill: #2980b9;
 }
 
-.hexagon .water.species {
+.hexagon .water.population {
   fill: #8e44ad !important;
 }
 
-.hexagon .land.species {
-  fill: #f39c12 !important;
+.hexagon .land.population {
+  fill: #e67e22 !important;
 }
 
 .mesh {
@@ -43,4 +43,18 @@ svg {
   stroke: #2ecc71;
   stroke-width: 2px;
   pointer-events: none;
+}
+
+
+.population {
+  -webkit-animation-name: pulsate;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-timing-function: ease-in-out;
+  -webkit-animation-iteration-count: infinite
+}
+
+@-webkit-keyframes pulsate {
+    0% { opacity: 1.0 }
+   50% { opacity: 0.2 }
+  100% { opacity: 1.0 }
 }
