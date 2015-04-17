@@ -4,17 +4,23 @@
 		<meta charset="utf-8">
 		<title>protocol</title>
 		<script src="https://code.jquery.com/jquery-2.1.3.js"></script>
+
+		<script src="http://d3js.org/d3.v3.min.js"></script>
+		<script src="http://d3js.org/topojson.v1.min.js"></script>
+
 		<script src="scripts/species.js"></script>
 		<script src="scripts/kingdom.js"></script>
 		<script src="scripts/population.js"></script>
 		<script src="scripts/lifecycles.js"></script>
+		<script src="scripts/hex_map.js"></script>
+		<link rel="stylesheet" href="styles/lifecycles.css">
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	</head>
-
-	<body>
-		<script>
-			lifecycles_begin();
-		</script>
-	</body>
+<body>
+<script>
+		lifecycles_begin();
+		render_map();
+</script>
+</body>
 </html>

@@ -4,7 +4,7 @@ var Population = function(species)
 	this.count =  1000;
 	this.count_ever = this.count;
 
-	this.birth_period = 100; // milliseconds for a year
+	this.birth_period = 1000; // milliseconds for a year
 	this.birth_tick();
 };
 
