@@ -44,7 +44,7 @@ var render_map = function()
 
 		classes += " "
 
-		classes += d.species.length > 0 ? "species" : "";
+		classes += d.species ? "species" : "";
 
 		return classes;
 	}
